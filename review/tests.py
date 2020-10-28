@@ -28,3 +28,24 @@ class ProjectTest(TestCase):
         self.task.save()
         project = Project.single_project(1)
         self.assertTrue(len(project)>0)
+class ProfileTest(TestCase):
+
+    def setUp(self):
+        self.user = User.objects.create(id=1, username='a')
+        self.task = Project.objects.create(id=1,
+                                           by=self.user,
+                                           title='a',
+                                           description='b',
+                                           link='c')
+        self.profile = Profile.objects.create(name=self.user,
+                                              bio='b',
+                                              projects=self.task,
+                                              contact='c')
+
+    def test_instance(self):
+        self.assertTrue(isinstance(self.profile,Profile))
+
+    def test_get_profile(self):
+        self.profile.save()
+        profile = Profile.get_profile('a')
+        self.assertTrue(len(profile)>0)
