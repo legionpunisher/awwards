@@ -47,3 +47,23 @@ class Project(models.Model):
     def single_project(cls,id):
         project = Project.objects.filter(id =id)
         return project
+class Rate(models.Model):
+    Rating_choices = (
+        (1, '1'),
+        (2, '2'),
+        (3, '3'),
+        (4, '4'),
+        (5, '5'),
+        (6, '6'),
+        (7, '7'),
+        (8, '8'),
+        (9, '9'),
+        (10, '10'),
+    )
+    rater = models.ForeignKey(User,on_delete=models.CASCADE)
+    task = models.ForeignKey('app.Project',on_delete=models.CASCADE,related_name='rates')
+    design = models.PositiveIntegerField(choices=Rating_choices, default=0,validators=[MaxValueValidator(10), MinValueValidator(0)])
+    usability = models.PositiveIntegerField(choices=Rating_choices, default=0,validators=[MaxValueValidator(10), MinValueValidator(0)])
+    content = models.PositiveIntegerField(choices=Rating_choices, default=0,validators=[MaxValueValidator(10), MinValueValidator(0)])
+    average = models.PositiveIntegerField(default=0,validators=[MaxValueValidator(10), MinValueValidator(0)])
+    review = models.TextField(blank = True, null=True)
