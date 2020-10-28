@@ -49,3 +49,21 @@ class ProfileTest(TestCase):
         self.profile.save()
         profile = Profile.get_profile('a')
         self.assertTrue(len(profile)>0)
+class RateTest(TestCase):
+
+    def setUp(self):
+        self.user = User.objects.create(id=1, username='a')
+        self.task = Project.objects.create(by=self.user,
+                                           title='a',
+                                           description='b',
+                                           link='c')
+        self.rate = Rate.objects.create(rater=self.user,
+                                        task=self.task,
+                                        design='3',
+                                        content='3',
+                                        usability='3',
+                                        average='3',
+                                        review='a')
+
+    def test_instance(self):
+        self.assertTrue(isinstance(self.rate,Rate))
