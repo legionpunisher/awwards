@@ -29,3 +29,21 @@ class Project(models.Model):
 
     def __str__(self):
         return self.title
+    
+    def save_project(self):
+        self.save()
+
+    @classmethod
+    def get_project(cls,identity):
+        project = Project.objects.filter(by__username__icontains = identity)
+        return project
+
+    @classmethod
+    def search(cls,name):
+        project = cls.objects.filter(title__icontains = name)
+        return project
+
+    @classmethod
+    def single_project(cls,id):
+        project = Project.objects.filter(id =id)
+        return project
