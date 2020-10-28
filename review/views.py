@@ -32,3 +32,13 @@ def new_project(request):
         form= NewProjectForm()
 
     return render(request, 'new_project.html', {'form':form})
+@login_required(login_url='/accounts/login/')
+def search(request):
+    if 'project' in request.GET and request.GET['project']:
+        name = request.GET.get('project')
+        project = Project.search(name)
+
+        return render(request, 'search.html', {'title':name, 'content':project})
+
+    else:
+        return render(request,'search.html')
