@@ -19,3 +19,13 @@ class Profile(models.Model):
         profile = Profile.objects.filter(name__username__icontains = identity)
         return profile
 
+class Project(models.Model):
+    by = models.ForeignKey(User, on_delete=models.CASCADE)
+    title = models.CharField(max_length = 60)
+    homepage = models.ImageField(upload_to = 'images/')
+    description = models.TextField()
+    link = models.CharField(max_length = 60)
+    rating = models.ForeignKey(Rate, on_delete=models.CASCADE,null=True,blank=True)
+
+    def __str__(self):
+        return self.title
