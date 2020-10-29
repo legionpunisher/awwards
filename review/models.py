@@ -18,7 +18,7 @@ class Rate(models.Model):
         (10, '10'),
     )
     rater = models.ForeignKey(User,on_delete=models.CASCADE)
-    task = models.ForeignKey('app.Project',on_delete=models.CASCADE,related_name='rates')
+    task = models.ForeignKey('review.Project',on_delete=models.CASCADE,related_name='rates')
     design = models.PositiveIntegerField(choices=Rating_choices, default=0,validators=[MaxValueValidator(10), MinValueValidator(0)])
     usability = models.PositiveIntegerField(choices=Rating_choices, default=0,validators=[MaxValueValidator(10), MinValueValidator(0)])
     content = models.PositiveIntegerField(choices=Rating_choices, default=0,validators=[MaxValueValidator(10), MinValueValidator(0)])
