@@ -1,10 +1,13 @@
 astroid==2.4.2
 confusable-homoglyphs==3.2.0
+dj-database-url==0.5.0
 Django==1.11.17
 django-bootstrap4==0.0.7
+django-heroku==0.3.1
 django-registration==2.4.1
 django-tinymce==2.7.0
 djangorestframework==3.8.2
+gunicorn==20.0.4
 isort==5.6.4
 lazy-object-proxy==1.4.3
 mccabe==0.6.1
@@ -15,4 +18,5 @@ python-decouple==3.1
 pytz==2020.1
 six==1.15.0
 toml==0.10.1
+whitenoise==5.2.0
 wrapt==1.12.1
